@@ -285,9 +285,10 @@ class Video extends Component {
 				if (video !== null) {
 					elms--
 					video.parentNode.removeChild(video)
-
+					video.controls = true
 					let main = document.getElementById('main')
 					this.changeCssVideos(main)
+					
 				}
 			})
 
@@ -313,7 +314,7 @@ class Video extends Component {
 							let cssMesure = this.changeCssVideos(main)
 
 							let video = document.createElement('video')
-
+							video.controls = true
 							let css = {minWidth: cssMesure.minWidth, minHeight: cssMesure.minHeight, maxHeight: "100%", margin: "10px",
 								borderStyle: "solid", borderColor: "#bdbdbd", objectFit: "fill"}
 							for(let i in css) video.style[i] = css[i]
@@ -443,14 +444,14 @@ class Video extends Component {
 	}
 
 	render() {
-		if(this.isChrome() === false){
-			return (
-				<div style={{background: "white", width: "30%", height: "auto", padding: "20px", minWidth: "400px",
-						textAlign: "center", margin: "auto", marginTop: "50px", justifyContent: "center"}}>
-					<h1>Sorry, this works only with Google Chrome</h1>
-				</div>
-			)
-		}
+	//	if(this.isChrome() === false && true){
+	//		return (
+	//			<div style={{background: "white", width: "30%", height: "auto", padding: "20px", minWidth: "400px",
+	//					textAlign: "center", margin: "auto", marginTop: "50px", justifyContent: "center"}}>
+	//				<h1>Sorry, this works only with Google Chrome</h1>
+	//			</div>
+	//		)
+	//	}
 		return (
 			<div>
 				{this.state.askForUsername === true ?
@@ -463,7 +464,7 @@ class Video extends Component {
 						</div>
 
 						<div style={{ justifyContent: "center", textAlign: "center", paddingTop: "40px" }}>
-							<video id="my-video" ref={this.localVideoref} autoPlay muted style={{
+							<video id="my-video" placeholder="WAAH" ref={this.localVideoref} autoPlay muted style={{
 								borderStyle: "solid",borderColor: "#bdbdbd",objectFit: "fill",width: "60%",height: "30%"}}></video>
 						</div>
 					</div>
@@ -519,9 +520,10 @@ class Video extends Component {
 									marginTop: "10px",width: "120px",fontSize: "10px"
 								}} onClick={this.copyUrl}>Copy invite link</Button>
 							</div>
-
+							
 							<Row id="main" className="flex-container" style={{ margin: 0, padding: 0 }}>
-								<video id="my-video" ref={this.localVideoref} autoPlay muted style={{
+
+								<video id="my-video" ref={this.localVideoref} autoPlay controls muted style={{
 									borderStyle: "solid",borderColor: "#bdbdbd",margin: "10px",objectFit: "fill",
 									width: "100%",height: "100%"}}></video>
 							</Row>
